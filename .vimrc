@@ -163,6 +163,7 @@ set history=200
 set ignorecase " cf page 203 Practical vim
 set smartcase
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l> " cf 219 Practical Vim
+set incsearch
 
 " page 232 of Pratical vim
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
