@@ -118,6 +118,10 @@ if !exists('g:airline_symbols')
   let g:airline_symbols.notexists = '☠'
   let g:airline_symbols.whitespace = 'Ξ'
 
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#left_sep = '▶'
+  let g:airline#extensions#tabline#left_alt_sep = '|'
+
 set timeoutlen=1000 ttimeoutlen=0
 let g:tmux_navigator_no_mappings = 1
 
@@ -164,6 +168,7 @@ set ignorecase " cf page 203 Practical vim
 set smartcase
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l> " cf 219 Practical Vim
 set incsearch
+set relativenumber
 
 " page 232 of Pratical vim
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
