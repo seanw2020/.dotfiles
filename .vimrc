@@ -169,6 +169,7 @@ set smartcase
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l> " cf 219 Practical Vim
 set incsearch
 set relativenumber
+set hlsearch
 
 " page 232 of Pratical vim
 xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
