@@ -80,7 +80,7 @@ do_install () {
 
         # install neovim
         sudo curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -o /usr/local/bin/nvim 
-        sudo chmod 0774 /usr/local/bin/nvim
+        sudo chmod 0775 /usr/local/bin/nvim
 
         # install vundle
         git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
