@@ -44,11 +44,11 @@ Plugin 'leshill/vim-json'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-set runtimepath+=/home/ibmadmin/.vim/bundles/repos/github.com/Shougo/dein.vim
-if dein#load_state('/home/ibmadm/.vim/bundles/')
-  call dein#begin('/home/ibmadmin/.vim/bundles/')
+set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
+if dein#load_state('~/.vim/bundles/')
+  call dein#begin('~/.vim/bundles/')
 
-  call dein#add('/home/ibmadmin/.vim/bundles/repos/github.com/Shougo/dein.vim/')
+  call dein#add('~/.vim/bundles/repos/github.com/Shougo/dein.vim/')
   call dein#add('Shougo/neocomplete.vim')
 
   call dein#end()
