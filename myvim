@@ -84,6 +84,10 @@ do_install () {
           https://copr.fedorainfracloud.org/coprs/dperson/neovim/repo/epel-7/dperson-neovim-epel-7.repo 
         yum -y install neovim
 
+        # install dein
+        curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+        sh ./installer.sh ~/.vim/bundles
+
         # install ctags
         yum -y install ctags
 
