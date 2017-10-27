@@ -79,9 +79,9 @@ do_install () {
 	# check if already installed? TODO
 
         # install neovim
-        sudo yum -y install fuse
-        sudo curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -o /usr/local/bin/nvim 
-        sudo chmod 0775 /usr/local/bin/nvim
+        yum -y install epel-release
+        curl -o /etc/yum.repos.d/dperson-neovim-epel-7.repo https://copr.fedorainfracloud.org/coprs/dperson/neovim/repo/epel-7/dperson-neovim-epel-7.repo 
+        yum -y install neovim
 
         # install vundle
         git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
