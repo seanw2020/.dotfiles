@@ -1,9 +1,6 @@
 " MYVIM_START
 set encoding=utf-8
 
-" enable pathogen
-execute pathogen#infect()
-
 " Enable vundle
 set nocompatible              " be iMproved, required
 filetype off                  " required
