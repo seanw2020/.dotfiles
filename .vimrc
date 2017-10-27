@@ -40,6 +40,8 @@ Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
 
 Plugin 'thaerkh/vim-workspace'
+Plugin 'tetsuo13/vim-log4j'
+Plugin 'leshill/vim-json'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -77,6 +79,24 @@ else
   let g:solarized_italic = 1
   let g:solarized_contrast = "normal"
   let g:solarized_visibility= "normal"
+  let s:vmode       = "cterm"
+  " I reduced each "base" number by 7
+  "    let s:base03      = "234"
+  "    let s:base02      = "235"
+  "    let s:base01      = "239"
+  "    let s:base00      = "240"
+  "    let s:base0       = "244"
+  "    let s:base1       = "245"
+  "    let s:base2       = "187"
+  "    let s:base3       = "230"
+  let s:base03      = "227"
+  let s:base02      = "228"
+  let s:base01      = "232"
+  let s:base00      = "233"
+  let s:base0       = "237"
+  let s:base1       = "238"
+  let s:base2       = "180"
+  let s:base3       = "223"
 
   " The following must come AFTER the let statements or the colors fail to load properly!
   colorscheme solarized
@@ -186,3 +206,9 @@ endfunction
 
 " Page 292 of Practical vim
 set infercase
+
+" install sensible colors for diffs
+highlight DiffAdd    cterm=bold ctermfg=none ctermbg=250 gui=none guifg=bg guibg=Red
+highlight DiffDelete cterm=bold ctermfg=251 ctermbg=255 gui=none guifg=bg guibg=Red
+highlight DiffChange cterm=bold ctermfg=none ctermbg=250 gui=none guifg=bg guibg=Red
+highlight DiffText   cterm=bold ctermfg=16 ctermbg=51 gui=none guifg=bg guibg=Red
