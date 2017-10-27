@@ -79,6 +79,7 @@ do_install () {
 	# check if already installed? TODO
 
         # install neovim
+        sudo yum -y install fuse
         sudo curl -L https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -o /usr/local/bin/nvim 
         sudo chmod 0775 /usr/local/bin/nvim
 
