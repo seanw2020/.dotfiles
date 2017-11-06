@@ -39,7 +39,6 @@ Plugin 'xolox/vim-misc'
 Plugin 'thaerkh/vim-workspace'
 Plugin 'tetsuo13/vim-log4j'
 Plugin 'leshill/vim-json'
-Plugin 'jaxbot/github-issues.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -210,3 +209,7 @@ highlight DiffAdd    cterm=bold ctermfg=none ctermbg=250 gui=none guifg=bg guibg
 highlight DiffDelete cterm=bold ctermfg=251 ctermbg=255 gui=none guifg=bg guibg=Red
 highlight DiffChange cterm=bold ctermfg=none ctermbg=250 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=16 ctermbg=51 gui=none guifg=bg guibg=Red
+
+" tab keys for tabs
+nmap <F4> :tabp<cr>
+nmap <F5> :tabn<cr>
