@@ -28,39 +28,40 @@ Plugin 'majutsushi/tagbar'
 Plugin 'bling/vim-airline'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-surround'
-Plugin 'Shougo/neocomplcache'
-Plugin 'shougo/neosnippet.vim'
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'shougo/deoplete.nvim'
+Plugin 'valloric/youcompleteme'
+"Plugin 'Shougo/neocomplcache'
+"Plugin 'shougo/neosnippet.vim'
+"Plugin 'Shougo/neosnippet-snippets'
+"Plugin 'shougo/deoplete.nvim'
 
 Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
 
 Plugin 'thaerkh/vim-workspace'
-Plugin 'tetsuo13/vim-log4j'
+Plugin 'dzeban/vim-log-syntax'
 Plugin 'leshill/vim-json'
-Plugin 'jaxbot/github-issues.vim'
+"Plugin 'jaxbot/github-issues.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
-if dein#load_state('~/.vim/bundles/')
-  call dein#begin('~/.vim/bundles/')
+"set runtimepath+=~/.vim/bundles/repos/github.com/Shougo/dein.vim
+"if dein#load_state('~/.vim/bundles/')
+"  call dein#begin('~/.vim/bundles/')
+"
+"  call dein#add('~/.vim/bundles/repos/github.com/Shougo/dein.vim/')
+"  call dein#add('Shougo/neocomplete.vim')
+"
+"  call dein#end()
+"  call dein#save_state()
+"endif
 
-  call dein#add('~/.vim/bundles/repos/github.com/Shougo/dein.vim/')
-  call dein#add('Shougo/neocomplete.vim')
-
-  call dein#end()
-  call dein#save_state()
-endif
-
-" non-Vundle stuff 
+" non-Vundle stuff
 
 " minimum defaults
 syntax on
-filetype plugin indent on
+"filetype plugin indent on
 
 " if running in diff mode (e.g., vimdiff)
 if &diff
@@ -170,7 +171,7 @@ let mapleader = ","
 let g:ctrlp_show_hidden = 1
 
 let g:python_host_prog = '/path/to/python2.7'
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 
 " no plugins required for these
 set path+=**
@@ -210,3 +211,7 @@ highlight DiffAdd    cterm=bold ctermfg=none ctermbg=250 gui=none guifg=bg guibg
 highlight DiffDelete cterm=bold ctermfg=251 ctermbg=255 gui=none guifg=bg guibg=Red
 highlight DiffChange cterm=bold ctermfg=none ctermbg=250 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=16 ctermbg=51 gui=none guifg=bg guibg=Red
+
+" tab keys for tabs
+nmap <F4> :tabp<cr>
+nmap <F5> :tabn<cr>
