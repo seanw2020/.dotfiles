@@ -16,7 +16,6 @@ call vundle#begin()" let Vundle manage Vundle, required
 " Plugins
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-commentary'
 "Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-endwise'
