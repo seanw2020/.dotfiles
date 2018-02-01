@@ -215,5 +215,5 @@ highlight DiffText   cterm=bold ctermfg=16 ctermbg=51 gui=none guifg=bg guibg=Re
 " tab keys for tabs
 nmap <F4> :tabp<cr>
 nmap <F5> :tabn<cr>
-nmap <F6> :set norelativenumber nonumber GitGutterDisable<cr>
-nmap <F7> :set number relativenumber GitGutterEnable<cr>
+nmap <F6> :set norelativenumber nonumber GitGutterDisable <cr>
+nmap <F7> :set number relativenumber GitGutterEnable <cr>
