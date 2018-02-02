@@ -155,14 +155,14 @@ nnoremap <BS> <C-w>h
 
 " https://stackoverflow.com/questions/10303557/map-f2-to-neerdtreetoggle
 "silent! nmap <C-p> :NERDTreeToggle<CR>
-silent! map <F3> :NERDTreeFind<CR>
+silent! map <F2> :NERDTreeFind<CR>
 "let g:NERDTreeMapActivateNode="<F2>"
 "let g:NERDTreeMapPreview="<F4>"
 
 " toggles
 nmap <F1> :NERDTreeToggle<CR>
 "map <Leader>N :NERDTreeToggle<CR>
-nmap <F2> :TagbarToggle<CR>
+nmap <F3> :TagbarToggle<CR>
 
 " Leader
 let mapleader = ","
