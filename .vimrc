@@ -17,7 +17,6 @@ call vundle#begin()" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-commentary'
-"Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-fugitive'
 Plugin 'raimondi/delimitmate'
@@ -27,22 +26,26 @@ Plugin 'majutsushi/tagbar'
 Plugin 'bling/vim-airline'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-surround'
-"Plugin 'valloric/youcompleteme'
+Plugin 'tpope/vim-obsession'
+Plugin 'dzeban/vim-log-syntax'
+Plugin 'leshill/vim-json'
+Plugin 'vim-utils/vim-man'
+Plugin 'Conque-Shell'
+
+" Use this instead of SuperTab, CtrlP, or vim-easytags
+Plugin 'valloric/youcompleteme'
+
+" I decided against all of these
+"Plugin 'kien/ctrlp.vim'
 "Plugin 'Shougo/neocomplcache'
 "Plugin 'shougo/neosnippet.vim'
 "Plugin 'Shougo/neosnippet-snippets'
 "Plugin 'shougo/deoplete.nvim'
-
-Plugin 'xolox/vim-easytags'
-Plugin 'xolox/vim-misc'
-
+"Plugin 'xolox/vim-easytags'
+"Plugin 'xolox/vim-misc'
 "Plugin 'thaerkh/vim-workspace'
-Plugin 'tpope/vim-obsession'
-Plugin 'dzeban/vim-log-syntax'
-Plugin 'leshill/vim-json'
 "Plugin 'jaxbot/github-issues.vim'
-"Plugin 'vim-utils/vim-man'
-Plugin 'Conque-Shell'
+"Plugin 'ervandew/supertab'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -214,7 +217,7 @@ highlight DiffDelete cterm=bold ctermfg=251 ctermbg=255 gui=none guifg=bg guibg=
 highlight DiffChange cterm=bold ctermfg=none ctermbg=250 gui=none guifg=bg guibg=Red
 highlight DiffText   cterm=bold ctermfg=16 ctermbg=51 gui=none guifg=bg guibg=Red
 
-" tab keys for tabs
+" keys for tabs
 nmap <F4> :tabp<cr>
 nmap <F5> :tabn<cr>
 nmap <F6> :set norelativenumber nonumber <bar> GitGutterDisable <cr>
