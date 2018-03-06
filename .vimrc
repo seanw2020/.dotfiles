@@ -41,6 +41,8 @@ Plugin 'tpope/vim-obsession'
 Plugin 'dzeban/vim-log-syntax'
 Plugin 'leshill/vim-json'
 "Plugin 'jaxbot/github-issues.vim'
+"Plugin 'vim-utils/vim-man'
+Plugin 'Conque-Shell'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
