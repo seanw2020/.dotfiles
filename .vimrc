@@ -219,3 +219,10 @@ nmap <F4> :tabp<cr>
 nmap <F5> :tabn<cr>
 nmap <F6> :set norelativenumber nonumber <bar> GitGutterDisable <cr>
 nmap <F7> :set number relativenumber <bar> GitGutterEnable <cr>
+
+
+" Use cppman for keyword program -- Shift+K
+autocmd FileType cc set keywordprg=cppman
+autocmd FileType cpp set keywordprg=cppman
+" and avoids the requirement to press Enter to continue
+nnoremap K K<CR>
