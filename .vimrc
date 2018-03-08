@@ -33,7 +33,7 @@ Plugin 'vim-utils/vim-man'
 Plugin 'Conque-Shell'
 
 " Use this instead of SuperTab, CtrlP, or vim-easytags
-Plugin 'valloric/youcompleteme'
+" Plugin 'valloric/youcompleteme'
 
 " I decided against all of these
 "Plugin 'kien/ctrlp.vim'
