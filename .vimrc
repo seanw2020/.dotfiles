@@ -30,7 +30,7 @@ Plugin 'tpope/vim-obsession'
 Plugin 'dzeban/vim-log-syntax'
 Plugin 'leshill/vim-json'
 Plugin 'vim-utils/vim-man'
-Plugin 'Conque-Shell'
+"Plugin 'Conque-Shell'
 
 " Use this instead of SuperTab, CtrlP, or vim-easytags
 " Plugin 'valloric/youcompleteme'
