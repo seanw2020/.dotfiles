@@ -216,3 +216,17 @@ autocmd FileType cpp set keywordprg=cppman
 
 " Activate the window on partial name match with eg :sb 1.yaml
 set switchbuf+=useopen
+
+" Lightline tweaks
+  set laststatus=2 " Always display the statusline in all windows
+  " Enable fugitive branches in lightline
+  let g:lightline = {
+        \ 'colorscheme': 'solarized',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+        \ },
+        \ 'component_function': {
+        \   'gitbranch': 'fugitive#head'
+        \ },
+        \ }
