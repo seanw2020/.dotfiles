@@ -99,6 +99,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 bindkey '^ ' autosuggest-accept
+bindkey '\e[1~'   beginning-of-line  # Linux console
+bindkey '\e[4~'   end-of-line        # Linux console
 
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time )
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time )
