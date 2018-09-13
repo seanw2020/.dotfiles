@@ -169,9 +169,14 @@ set timeoutlen=1000 ttimeoutlen=0 " Eliminating delays on ESC in vim and zsh. Ti
   nnoremap <bs> <C-w>h
 
 " NERDTree
-silent! nmap <F1> :NERDTreeToggle<CR>
-silent! nmap <F2> :NERDTreeFind<CR>
-silent! nmap <F3> :TagbarToggle<CR>
+  silent! nmap <F1> :NERDTreeToggle<CR>
+  silent! nmap <F2> :NERDTreeFind<CR>
+  silent! nmap <F3> :TagbarToggle<CR>
+  let g:NERDTreeDirArrowExpandable = '→'
+  let g:NERDTreeDirArrowCollapsible = '↓'
+  " Optional, in case your terminal's font can't handle arrows
+  " let NERDTreeDirArrowExpandable = "+"
+  " let NERDTreeDirArrowCollapsible = "-"
 
 " Misc
 let mapleader = "," " Set the Leader
