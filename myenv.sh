@@ -1,7 +1,6 @@
 #!/bin/bash
 # How to set up Sean's working environment
 
-set -x
 # setup
 cd
 
@@ -19,7 +18,7 @@ curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/seancolors
 
 # fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+yes | ~/.fzf/install
 
 # kubectl
 #echo "source <(kubectl completion bash)" >> ~/.bashrc
@@ -41,6 +40,3 @@ git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugi
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.zshrc -o ~/.zshrc
 chsh -s /bin/zsh
-
-set +x
-
