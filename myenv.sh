@@ -6,14 +6,14 @@ cd
 
 # Make back ups and uninstall (note: keeping .vim to avoid re-downloading plugins)
 chsh -s $(which bash)
-\mv -f ~/.vimrc ~/.vim.rc.%RANDOM%
-\mv -f ~/.fzf ~/.fzf.old.%RANDOM%
-\mv -f ~/.tmux ~/.tmux.old.%RANDOM%
-\mv -f ~/.tmux.conf ~/.tmux.conf.old.%RANDOM%
+\mv -f ~/.vimrc ~/.vim.rc.$RANDOM
+\mv -f ~/.fzf ~/.fzf.old.$RANDOM
+\mv -f ~/.tmux ~/.tmux.old.$RANDOM
+\mv -f ~/.tmux.conf ~/.tmux.conf.old.$RANDOM
 yes | sh ~/.oh-my-zsh/tools/uninstall.sh
-\mv -f ~/.oh-my-zsh ~/.oh-my-zsh.old.%RANDOM%
-\mv -f ~/.zshrc ~/.zshrc.old.%RANDOM%
-\mv -f ~/zsh-syntax-highlighting/ ~/zsh-syntax-highlighting.old.%RANDOM%
+\mv -f ~/.oh-my-zsh ~/.oh-my-zsh.old.$RANDOM
+\mv -f ~/.zshrc ~/.zshrc.old.$RANDOM
+\mv -f ~/zsh-syntax-highlighting/ ~/zsh-syntax-highlighting.old.$RANDOM
 read -p "If it was installed, myenv is now uninstalled. Press Enter to (re)-install"
 
 # vim
