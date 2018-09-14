@@ -72,7 +72,7 @@ git clone https://github.com/tmux-plugins/tmux-cpu ~/.tmux/tmux-cpu
 tmux start-server # start a server but don't attach to it
 tmux source-file ~/.tmux.conf # may be unnecessary
 tmux new-session -d # create a new session but don't attach to it either
-~/.tmux/plugins/tpm/scripts/install_plugins.sh # install the plugins
+#~/.tmux/plugins/tpm/scripts/install_plugins.sh # install the plugins
 tmux kill-server # killing the server is required to load the plugins
 
 # enable tmux mouse and keyboard support. The commands changed on 2.1 and higher
