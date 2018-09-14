@@ -11,10 +11,10 @@ chsh -s $(which bash)
 \mv -f ~/.tmux ~/.tmux.old.$RANDOM
 \mv -f ~/.tmux.conf ~/.tmux.conf.old.$RANDOM
 yes | sh ~/.oh-my-zsh/tools/uninstall.sh
-\mv -f ~/.oh-my-zsh ~/.oh-my-zsh.old.$RANDOM
 \mv -f ~/.zshrc ~/.zshrc.old.$RANDOM
 \mv -f ~/zsh-syntax-highlighting/ ~/zsh-syntax-highlighting.old.$RANDOM
-read -p "If it was installed, myenv is now uninstalled. Press Enter to (re)-install"
+echo
+read -p "If it was installed, myenv is now uninstalled. Press Enter to (re)-install. This will do a 'tmux kill-server'"
 
 # vim
 sudo yum -y install vim git ctags
@@ -48,8 +48,13 @@ curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.zshrc -o 
 chsh -s /bin/zsh
 
 # tmux
+# https://github.com/tmux-plugins/tpm/issues/6
+tmux kill-server 2>/dev/null
 sudo yum install -y tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.tmux.conf -o ~/.tmux.conf
-tmux source-file ~/.tmux.conf
-~/.tmux/plugins/tpm/scripts/install_plugins.sh
+tmux start-server # start a server but don't attach to it
+tmux source-file ~/.tmux.conf # may be unnecessary
+tmux new-session -d # create a new session but don't attach to it either
+~/.tmux/plugins/tpm/scripts/install_plugins.sh # install the plugins
+tmux kill-server # killing the server is required to load the plugins
