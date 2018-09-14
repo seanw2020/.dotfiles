@@ -42,6 +42,7 @@
   Plugin 'itchyny/lightline.vim' " A statusline plugin that doesn't require powerline or vim-airline
   Plugin 'ryanoasis/vim-devicons' " Supports plugins such as NERDTree, vim-lightline, vim-airline, CtrlP, powerline ...
   Plugin 'majutsushi/tagbar' " Warning: this slows down airvim
+  Plugin 'junegunn/fzf.vim'
 
 " Optional plugins
   " Plugin 'valloric/youcompleteme' " Use this instead of SuperTab, CtrlP, or vim-easytags

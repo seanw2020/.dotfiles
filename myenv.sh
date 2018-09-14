@@ -13,6 +13,7 @@ chsh -s $(which bash)
 yes | sh ~/.oh-my-zsh/tools/uninstall.sh 2>/dev/null
 \mv -f ~/.zshrc ~/.zshrc.old.$RANDOM 2>/dev/null
 \mv -f ~/zsh-syntax-highlighting/ ~/zsh-syntax-highlighting.old.$RANDOM 2>/dev/null
+rm -rfv ~/fish-kubectl-completions 2>/dev/null
 echo
 read -p "If it was installed, myenv is now uninstalled. This will do a 'tmux kill-server'. Press Enter to (re)-install."
 
@@ -47,7 +48,14 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.zshrc -o ~/.zshrc
 # This must go last in .zshrc. Details https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
 zsh -c 'echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc'
-chsh -s /bin/zsh
+
+
+# fish
+sudo yum -y install fish
+mkdir -p ~/.config/fish/completions
+cd ~/.config/fish
+git clone https://github.com/evanlucas/fish-kubectl-completions
+ln -s ../fish-kubectl-completions/kubectl.fish completions/
 
 # tmux
 # https://github.com/tmux-plugins/tpm/issues/6
@@ -71,3 +79,51 @@ else
   sed -i 's/MOUSE_COMMAND/setw -g mode-mouse on; set -g mouse-select-pane on; set -g mouse-resize-pane on; set -g mouse-select-window on; set -g mouse-utf on/g' ~/.tmux.conf
   sed -i 's/VIM_COMMAND//g' ~/.tmux.conf
 fi
+
+# Fonts
+cat <<'EOF'
+------------
+Note: Fonts
+------------
+To use the new icons in vim, install a compatible nerd-font.
+1. Download a nerd-font (eg in step #2) and install it on your computer (e.g., Windows: Control Panel > Fonts)
+2. https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/FiraCode.zip
+3. Set your terminal program (e.g., Putty, MobaXTerm, etc.) to use the new font.
+   Putty: Configuration > Window > Appearance > (tick) Allow selection of variable-pitch fonts > Change
+          Configuration > Connection > Data > Terminal-type string > xterm-256color
+   MobaXTerm: Settings > Configuration > Font 
+              (pick a session) > Right-click > Edit Session > Terminal Settings > Terminal font settings > Font
+
+Note: You'll get an error when running tmux if your version is too old to support the CPU module'
+EOF
+
+# What's next?
+cat <<'EOF'
+What's next?"
+
+General                                         Commands
+-----------                                     --------
+Command completion, including kubectl           zsh
+Cool, err more productive, vim plugins          vim
+Tmux powerline styles                           tmux
+
+vim                                             Commands
+-----------                                     --------
+NERDTree                                        F1
+Fuzzy search                                    :FZF
+
+tmux                                            Commands
+----                                            --------
+Prefix (avoids CTRL+B conflict in vim)          Ctrl+A
+Navigate between tmux and vim                   Ctrl+h Ctrl+j Ctrl+k Ctrl+l 
+
+zsh                                             Commands
+----                                            --------
+command completion                              ls -l[Enter] then ls
+kubernetes command completion                   kubectl get [Tab][Tab]
+
+fish                                            Commands
+----                                            --------
+command completion                              ls -l[TAB][TAB][TAB]
+kubernetes command completion                   kubectl get [Tab][Tab] 
+EOF
