@@ -64,7 +64,7 @@ sudo yum install -y bc
 ver=$(tmux -V | awk '{print $2}') # Get tmux version
 if [[ $(bc <<< "$ver >= 2.1") == 1 ]]; then
   sed -i 's/MOUSE_COMMAND/set -g mouse on/g' ~/.tmux.conf
-  sed -i 's/VIM_COMMAND/bind-key -T copy-mode-vi C-h select-pane -L\nbind-key -T copy-mode-vi C-j select-pane -D\nbind-key -T copy-mode-vi C-k select-pane -U\nbind-key -T copy-mode-vi C-l select-pane -R\nbind-key -T copy-mode-vi C-\ select-pane -l/g' ~/.tmux.conf
+  sed -i 's/VIM_COMMAND/bind-key -T copy-mode-vi C-h select-pane -L\nbind-key -T copy-mode-vi C-j select-pane -D\nbind-key -T copy-mode-vi C-k select-pane -U\nbind-key -T copy-mode-vi C-l select-pane -R\nbind-key -T copy-mode-vi C-\\ select-pane -l/g' ~/.tmux.conf
 else
   sed -i 's/MOUSE_COMMAND/setw -g mode-mouse on; set -g mouse-select-pane on; set -g mouse-resize-pane on; set -g mouse-select-window on; set -g mouse-utf on/g' ~/.tmux.conf
   sed -i 's/VIM_COMMAND//g' ~/.tmux.conf
