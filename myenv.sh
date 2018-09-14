@@ -50,6 +50,5 @@ chsh -s /bin/zsh
 sudo yum install -y tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.tmux.conf -o ~/.tmux.conf
-curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/seancolors.tmuxtheme -o ~/.tmux/seancolors.tmuxtheme
 tmux source-file ~/.tmux.conf
 ~/.tmux/plugins/tpm/scripts/install_plugins.sh
