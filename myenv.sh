@@ -1,7 +1,6 @@
 #!/bin/bash
 # How to set up Sean's working environment
 
-set -x
 # setup
 cd
 
@@ -13,6 +12,7 @@ echo "" | vim +PluginInstall +qall
 
 # tmux
 sudo yum install -y tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.tmux.conf -o ~/.tmux.conf
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/seancolors.tmuxtheme -o ~/.tmux/seancolors.tmuxtheme
 
@@ -40,5 +40,4 @@ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/theme
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.zshrc -o ~/.zshrc
 chsh -s /bin/zsh
 
-set +x
 
