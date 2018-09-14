@@ -14,7 +14,7 @@ yes | sh ~/.oh-my-zsh/tools/uninstall.sh
 \mv -f ~/.zshrc ~/.zshrc.old.$RANDOM
 \mv -f ~/zsh-syntax-highlighting/ ~/zsh-syntax-highlighting.old.$RANDOM
 echo
-read -p "If it was installed, myenv is now uninstalled. Press Enter to (re)-install. This will do a 'tmux kill-server'"
+read -p "If it was installed, myenv is now uninstalled. This will do a 'tmux kill-server'. Press Enter to (re)-install."
 
 # vim
 sudo yum -y install vim git ctags
