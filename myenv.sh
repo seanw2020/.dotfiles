@@ -9,7 +9,7 @@ EOF
 cd
 
 # Make back ups and uninstall (note: keeping .vim to avoid re-downloading plugins)
-\mv -f ~/.vimrc ~/.vim.rc.$RANDOM 2>/dev/null
+\mv -f ~/.vimrc ~/.vimrc.$RANDOM 2>/dev/null
 \mv -f ~/.fzf ~/.fzf.old.$RANDOM 2>/dev/null
 \mv -f ~/.tmux ~/.tmux.old.$RANDOM 2>/dev/null
 \mv -f ~/.tmux.conf ~/.tmux.conf.old.$RANDOM 2>/dev/null
