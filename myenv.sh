@@ -10,12 +10,6 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.vimrc -o ~/.vimrc
 echo "" | vim +PluginInstall +qall
 
-# tmux
-sudo yum install -y tmux
-curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.tmux.conf -o ~/.tmux.conf
-curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/seancolors.tmuxtheme -o ~/.tmux/seancolors.tmuxtheme
-
-
 # fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 yes | ~/.fzf/install
@@ -40,3 +34,12 @@ git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugi
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.zshrc -o ~/.zshrc
 chsh -s /bin/zsh
+
+# tmux
+sudo yum install -y tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.tmux.conf -o ~/.tmux.conf
+curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/seancolors.tmuxtheme -o ~/.tmux/seancolors.tmuxtheme
+# Fixes first launch, not sure how. Maybe remove? https://github.com/tmux-plugins/tpm/issues/58
+export TMUX_PLUGIN_MANAGER_PATH="$HOME/.tmux/plugins"
+~/.tmux/plugins/tpm/scripts/install_plugins.sh
