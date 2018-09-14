@@ -42,4 +42,6 @@ curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.tmux.conf
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/seancolors.tmuxtheme -o ~/.tmux/seancolors.tmuxtheme
 # Fixes first launch, not sure how. Maybe remove? https://github.com/tmux-plugins/tpm/issues/58
 export TMUX_PLUGIN_MANAGER_PATH="$HOME/.tmux/plugins"
+tmux source-file ~/.tmux.conf
 ~/.tmux/plugins/tpm/scripts/install_plugins.sh
+tmux source-file ~/.tmux.conf
