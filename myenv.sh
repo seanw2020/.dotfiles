@@ -14,10 +14,11 @@ chsh -s $(which bash)
 \mv -f ~/.tmux.conf ~/.tmux.conf.old.%RANDOM%
 yes | sh ~/.oh-my-zsh/tools/uninstall.sh
 \mv -f ~/.oh-my-zsh ~/.oh-my-zsh.old.%RANDOM%
+read -p "If it was installed, myenv is now uninstalled. Press Enter to (re)-install"
 
 # vim
 sudo yum -y install vim git ctags
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim 2>/dev/null
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.vimrc -o ~/.vimrc
 echo "" | vim +PluginInstall +qall
 
