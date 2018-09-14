@@ -4,6 +4,17 @@
 # setup
 cd
 
+# Make back ups and uninstall (note: keeping .vim to avoid re-downloading plugins)
+chsh -s $(which bash)
+\mv -f ~/.vimrc ~/.vim.rc.%RANDOM%
+\mv -f ~/.fzf ~/.fzf.old.%RANDOM%
+\mv -f ~/.zshrc ~/.zshrc.old.%RANDOM%
+\mv -f ~/zsh-syntax-highlighting/ ~/zsh-syntax-highlighting.old.%RANDOM%
+\mv -f ~/.tmux ~/.tmux.old.%RANDOM%
+\mv -f ~/.tmux.conf ~/.tmux.conf.old.%RANDOM%
+yes | sh ~/.oh-my-zsh/tools/uninstall.sh
+\mv -f ~/.oh-my-zsh ~/.oh-my-zsh.old.%RANDOM%
+
 # vim
 sudo yum -y install vim git ctags
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -40,7 +51,5 @@ sudo yum install -y tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.tmux.conf -o ~/.tmux.conf
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/seancolors.tmuxtheme -o ~/.tmux/seancolors.tmuxtheme
-# Fixes first launch, not sure how. Maybe remove? https://github.com/tmux-plugins/tpm/issues/58
-export TMUX_PLUGIN_MANAGER_PATH="$HOME/.tmux/plugins"
+tmux source-file ~/.tmux.conf
 ~/.tmux/plugins/tpm/scripts/install_plugins.sh
-

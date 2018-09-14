@@ -108,9 +108,8 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs histor
 # Autosuggest highlight color
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=14'
 
-# Shell bindings for tmux powershell to let tmux know current working directory
-#/root/.config/powerline/powerline.zsh
-
+# Set up fzf, whose install, BTW, won't overwrite this line since it already exists
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# This needs to stay last
-source /root/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# WARNING! This needs to stay last. Sean's myenv.sh should add it anyway, but here it is in case not
+# source /root/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
