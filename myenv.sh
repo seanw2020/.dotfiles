@@ -13,7 +13,7 @@ chsh -s $(which bash)
 yes | sh ~/.oh-my-zsh/tools/uninstall.sh 2>/dev/null
 \mv -f ~/.zshrc ~/.zshrc.old.$RANDOM 2>/dev/null
 \mv -f ~/zsh-syntax-highlighting/ ~/zsh-syntax-highlighting.old.$RANDOM 2>/dev/null
-rm -rfv ~/fish-kubectl-completions 2>/dev/null
+rm -rf ~/fish-kubectl-completions &>/dev/null
 echo
 read -p "If it was installed, myenv is now uninstalled. This will do a 'tmux kill-server'. Press Enter to (re)-install."
 
