@@ -15,7 +15,7 @@ cd
 \mv -f ~/.tmux.conf ~/.tmux.conf.old.$RANDOM 2>/dev/null
 yes | sh ~/.oh-my-zsh/tools/uninstall.sh 2>/dev/null
 \mv -f ~/.zshrc ~/.zshrc.old.$RANDOM 2>/dev/null
-\mv -f ~/zsh-syntax-highlighting/ ~/zsh-syntax-highlighting.old.$RANDOM 2>/dev/null
+\mv -f ~/zsh-syntax-highlighting/ ~/.zsh-syntax-highlighting.old.$RANDOM 2>/dev/null
 rm -rf ~/fish-kubectl-completions &>/dev/null
 echo
 read -p "If you previously ran this script, it was just removed. Press Enter to (re)-install Sean's myenv."
@@ -58,7 +58,7 @@ sudo yum -y install fish
 mkdir -p ~/.config/fish/completions
 cd ~/.config/fish
 git clone https://github.com/evanlucas/fish-kubectl-completions
-ln -s ../fish-kubectl-completions/kubectl.fish completions/
+ln -s ../fish-kubectl-completions/kubectl.fish completions/ 2>/dev/null
 
 # tmux
 # https://github.com/tmux-plugins/tpm/issues/6
@@ -83,8 +83,10 @@ else
   sed -i 's/VIM_COMMAND//g' ~/.tmux.conf
 fi
 
-# Fonts
+# What's next?
 cat <<'EOF'
+What's next?"
+
 Fonts:
 ------------
 To use the new icons in vim, install a compatible nerd-font.
@@ -97,11 +99,6 @@ To use the new icons in vim, install a compatible nerd-font.
               (pick a session) > Right-click > Edit Session > Terminal Settings > Terminal font settings > Font
 
 Note: You'll get an error when running tmux if your version is too old to support the CPU module'
-EOF
-
-# What's next?
-cat <<'EOF'
-What's next?"
 
 General                                         Commands
 -----------                                     --------
