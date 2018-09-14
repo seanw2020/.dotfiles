@@ -1,6 +1,10 @@
 #!/bin/bash
 # How to set up Sean's working environment
 
+cat<<'EOF'
+Welcome to myenv: Sean's RHEL/CentOS/Fedora script to quickly set up vim, zsh, tmux, and fish
+EOF
+
 # setup
 cd
 
@@ -81,8 +85,7 @@ fi
 
 # Fonts
 cat <<'EOF'
-------------
-Note: Fonts
+Fonts:
 ------------
 To use the new icons in vim, install a compatible nerd-font.
 1. Download a nerd-font (eg in step #2) and install it on your computer (e.g., Windows: Control Panel > Fonts)
