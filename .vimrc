@@ -132,6 +132,7 @@
   let mapleader = "," " Set the Leader
   set listchars=eol:⏎,tab:▸↹,trail:·,extends:>,precedes:⏎ " Display tabs and spaces, when you say :set list
   set mouse=a " Enable mouse
+  set ttymouse=xterm2 " allow mouse in tmux
   let g:go_version_warning = 0 " if you don't have Go installed, don't complain
   set infercase " Page 292 of Practical vim
   set number
