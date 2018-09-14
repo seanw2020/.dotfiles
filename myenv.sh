@@ -58,3 +58,11 @@ tmux source-file ~/.tmux.conf # may be unnecessary
 tmux new-session -d # create a new session but don't attach to it either
 ~/.tmux/plugins/tpm/scripts/install_plugins.sh # install the plugins
 tmux kill-server # killing the server is required to load the plugins
+
+# enable tmux mouse support. The command changed on 2.1 and higher
+ver=$(tmux -V | awk '{print $2}') # Get tmux version
+if [[ $(bc <<< "$ver >= 2.1") ]]; then
+  sed -i 's/MOUSE_COMMAND/set -g mouse on/g' ~/.tmux.conf
+else
+  sed -i 's/MOUSE_COMMAND/set -g mouse-mode on/g' ~/.tmux.conf
+fi

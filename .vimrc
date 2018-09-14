@@ -134,6 +134,10 @@
   let g:go_version_warning = 0 " if you don't have Go installed, don't complain
   set infercase " Page 292 of Practical vim
   set number
+  " Detect filesystem changes ASAP
+  " https://stackoverflow.com/questions/923737/detect-file-change-offer-to-reload-file
+  " http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally
+  au CursorHold,FocusGained,BufEnter * checktime
 
 " Search tweaks
   set history=999
