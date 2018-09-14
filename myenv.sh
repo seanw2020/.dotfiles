@@ -63,8 +63,12 @@ ln -s ../fish-kubectl-completions/kubectl.fish completions/ 2>/dev/null
 # https://github.com/tmux-plugins/tpm/issues/6
 tmux kill-server 2>/dev/null
 sudo yum install -y tmux
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# Don't install tpm because CentOS 7.4 can't load the required min tmux 1.9 version yet
+#git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+mkdir -p ~/.tmux
+git clone https://github.com/tmux-plugins/tmux-sensible ~/.tmux/tmux-sensible
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.tmux.conf -o ~/.tmux.conf
+git clone https://github.com/tmux-plugins/tmux-cpu ~/.tmux/tmux-cpu
 tmux start-server # start a server but don't attach to it
 tmux source-file ~/.tmux.conf # may be unnecessary
 tmux new-session -d # create a new session but don't attach to it either
