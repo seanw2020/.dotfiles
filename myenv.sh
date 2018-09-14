@@ -5,7 +5,6 @@
 cd
 
 # Make back ups and uninstall (note: keeping .vim to avoid re-downloading plugins)
-chsh -s $(which bash)
 \mv -f ~/.vimrc ~/.vim.rc.$RANDOM 2>/dev/null
 \mv -f ~/.fzf ~/.fzf.old.$RANDOM 2>/dev/null
 \mv -f ~/.tmux ~/.tmux.old.$RANDOM 2>/dev/null
@@ -15,7 +14,7 @@ yes | sh ~/.oh-my-zsh/tools/uninstall.sh 2>/dev/null
 \mv -f ~/zsh-syntax-highlighting/ ~/zsh-syntax-highlighting.old.$RANDOM 2>/dev/null
 rm -rf ~/fish-kubectl-completions &>/dev/null
 echo
-read -p "If it was installed, myenv is now uninstalled. This will do a 'tmux kill-server'. Press Enter to (re)-install."
+read -p "If you previously ran this script, it was just removed. Press Enter to (re)-install Sean's myenv."
 
 # vim
 sudo yum -y install vim git ctags
@@ -112,18 +111,28 @@ vim                                             Commands
 NERDTree                                        F1
 Fuzzy search                                    :FZF
 
+fzf (fuzzy search)                              Commands
+------------------                              --------
+Find a file and return its path                 fzf
+Select previous / next                          Ctrl+p or Ctrl+n
+
 tmux                                            Commands
 ----                                            --------
-Prefix (avoids CTRL+B conflict in vim)          Ctrl+A
+Start tmux                                      tmux
+Prefix (avoids CTRL+B conflict in vim)          Ctrl+a
+Mouse support enabled                           Ctrl+a "  (then drag the line)
 Navigate between tmux and vim                   Ctrl+h Ctrl+j Ctrl+k Ctrl+l 
 
 zsh                                             Commands
 ----                                            --------
+Change your default shell to zsh                chsh -s $(which zsh)
 command completion                              ls -l[Enter] then ls
+accept a suggestion                             ls[End] or ls[Right Arrow]
 kubernetes command completion                   kubectl get [Tab][Tab]
 
 fish                                            Commands
 ----                                            --------
+Change your default shell to fish               chsh -s $(which fish)
 command completion                              ls -l[TAB][TAB][TAB]
 kubernetes command completion                   kubectl get [Tab][Tab] 
 EOF
