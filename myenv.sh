@@ -60,6 +60,7 @@ tmux new-session -d # create a new session but don't attach to it either
 tmux kill-server # killing the server is required to load the plugins
 
 # enable tmux mouse support. The command changed on 2.1 and higher
+yum install -y bc
 ver=$(tmux -V | awk '{print $2}') # Get tmux version
 if [[ $(bc <<< "$ver >= 2.1") ]]; then
   sed -i 's/MOUSE_COMMAND/set -g mouse on/g' ~/.tmux.conf
