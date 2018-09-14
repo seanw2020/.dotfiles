@@ -45,6 +45,8 @@ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/theme
 git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.zshrc -o ~/.zshrc
+# This must go last in .zshrc. Details https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
+zsh -c "echo \"source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh\" >> ${ZDOTDIR:-$HOME}/.zshrc"
 chsh -s /bin/zsh
 
 # tmux
