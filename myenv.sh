@@ -88,11 +88,16 @@ fi
 
 # What's next?
 cat <<'EOF'
+Welcome:
+This script automatically installed and configured vim, zsh, oh-my-zsh, tmux, and fish shell to get you up and running quickly. Modify any settings you like. You can re-run this script by copying and pasting this command:
+bash <(curl -s https://raw.githubusercontent.com/seanw2020/.dotfiles/master/myenv.sh)
+
+
 What's next?"
 
 Fonts:
 ------------
-To use the new icons in vim, install a compatible nerd-font.
+To use the new icons (see vim-devicons), install a compatible nerd-font:
 1. Download a nerd-font (eg in step #2) and install it on your computer (e.g., Windows: Control Panel > Fonts)
 2. https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/FiraCode.zip
 3. Set your terminal program (e.g., Putty, MobaXTerm, etc.) to use the new font.
@@ -101,33 +106,42 @@ To use the new icons in vim, install a compatible nerd-font.
    MobaXTerm: Settings > Configuration > Font 
               (pick a session) > Right-click > Edit Session > Terminal Settings > Terminal font settings > Font
 
-Note: You'll get an error when running tmux if your version is too old to support the CPU module'
-
-General                                         Commands
+General                                         URL
 -----------                                     --------
-Command completion, including kubectl           zsh
-Cool, err more productive, vim plugins          vim
-Tmux powerline styles                           tmux
+Oh-my-zsh                                       https://github.com/robbyrussell/oh-my-zsh
+Interactive vim tutorial                        https://www.openvim.com/
+vim-devicons                                    https://github.com/ryanoasis/vim-devicons
+Practical introduction to tmux                  https://hackernoon.com/a-gentle-introduction-to-tmux-8d784c404340
+Fish shell tutorial                             https://fishshell.com/docs/2.4/tutorial.html
 
 vim                                             Commands
 -----------                                     --------
-NERDTree                                        F1
+Open NERDTree file browser                      F1
+Navigate NERDTree to the file already open      F2
+Tagbar (show "tags" -- jump locations)          F3
 Fuzzy search                                    :FZF
+Show installed plugins                          :PluginList
 
 fzf (fuzzy search)                              Commands
 ------------------                              --------
 Find a file and return its path                 fzf
+Paste the selected files/dirs into the shell    Ctrl+t
+Search your history                             Ctrl+r
+cd to a directory                               Alt+c
 Select previous / next                          Ctrl+p or Ctrl+n
 
 tmux                                            Commands
 ----                                            --------
 Start tmux                                      tmux
 Prefix (avoids CTRL+B conflict in vim)          Ctrl+a
-Mouse support enabled                           Ctrl+a "  (then drag the line)
-Navigate between tmux and vim                   Ctrl+h Ctrl+j Ctrl+k Ctrl+l 
+Horizontally split the screen                   Ctrl+a "  (then drag the line)
+Vertically split the screen                     Ctrl+a %  (then drag the line)
+Navigate between screens                        Ctrl+a (Arrow Keys)
+Seemlessly navigate between tmux and vim        Ctrl+h Ctrl+j Ctrl+k Ctrl+l 
 
 zsh                                             Commands
 ----                                            --------
+open zsh                                        zsh
 Change your default shell to zsh                chsh -s $(which zsh)
 command completion                              ls -l[Enter] then ls
 accept a suggestion                             ls[End] or ls[Right Arrow]
