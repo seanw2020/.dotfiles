@@ -87,9 +87,11 @@ else
 fi
 
 # What's next?
+echo
+echo
 cat <<'EOF'
 Welcome:
-This script automatically installed and configured vim, zsh, oh-my-zsh, tmux, and fish shell to get you up and running quickly. Modify any settings you like. You can re-run this script by copying and pasting this command:
+This script automatically installed and configured vim, zsh, oh-my-zsh, tmux, and fish shell to get you up and running quickly. Modify any settings you like. You can re-run this script by copying and pasting the following:
 bash <(curl -s https://raw.githubusercontent.com/seanw2020/.dotfiles/master/myenv.sh)
 
 
