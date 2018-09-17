@@ -46,11 +46,10 @@ zsh -c 'autoload -U compinit && compinit'
 zsh -c 'git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search'
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 curl -Ls https://raw.githubusercontent.com/seanw2020/.dotfiles/master/.zshrc -o ~/.zshrc
 # This must go last in .zshrc. Details https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md
-zsh -c 'echo "source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc'
-
+zsh -c 'echo "source ${(q-)PWD}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" >> ${ZDOTDIR:-$HOME}/.zshrc'
 
 # fish
 sudo yum -y install fish
@@ -59,7 +58,7 @@ cd ~/.config/fish
 git clone https://github.com/evanlucas/fish-kubectl-completions
 ln -s ../fish-kubectl-completions/kubectl.fish completions/ 2>/dev/null
 
-# tmux
+# tmux - general
 # https://github.com/tmux-plugins/tpm/issues/6
 tmux kill-server 2>/dev/null
 sudo yum install -y tmux
@@ -75,7 +74,7 @@ tmux new-session -d # create a new session but don't attach to it either
 #~/.tmux/plugins/tpm/scripts/install_plugins.sh # install the plugins
 tmux kill-server # killing the server is required to load the plugins
 
-# enable tmux mouse and keyboard support. The commands changed on 2.1 and higher
+# tmux - mouse. enable tmux mouse and keyboard support. The commands changed on 2.1 and higher
 sudo yum install -y bc
 ver=$(tmux -V | awk '{print $2}') # Get tmux version
 if [[ $(bc <<< "$ver >= 2.1") == 1 ]]; then
@@ -85,6 +84,9 @@ else
   sed -i 's/MOUSE_COMMAND/setw -g mode-mouse on; set -g mouse-select-pane on; set -g mouse-resize-pane on; set -g mouse-select-window on; set -g mouse-utf on/g' ~/.tmux.conf
   sed -i 's/VIM_COMMAND//g' ~/.tmux.conf
 fi
+
+# tmux - resurrect. Survive reboots with Prefix + Ctrl+s
+git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmux/tmux-resurrect
 
 # What's next?
 echo
@@ -140,6 +142,9 @@ Horizontally split the screen                   Ctrl+a "  (then drag the line)
 Vertically split the screen                     Ctrl+a %  (then drag the line)
 Navigate between screens                        Ctrl+a (Arrow Keys)
 Seemlessly navigate between tmux and vim        Ctrl+h Ctrl+j Ctrl+k Ctrl+l 
+Scroll up and down in command output		Ctrl+a Page Up (then Up and Down arrows)
+Save your environment to survive host reboot    Ctrl+a s
+Restore your environment after host reboot      Ctrl+a r
 
 zsh                                             Commands
 ----                                            --------
@@ -154,4 +159,13 @@ fish                                            Commands
 Change your default shell to fish               chsh -s $(which fish)
 command completion                              ls -l[TAB][TAB][TAB]
 kubernetes command completion                   kubectl get [Tab][Tab] 
+
+Kubernetes                                      Commands
+----                                            --------
+Save typing with aliases--e.g., kubectl         k
+list all aliases                                alias
+Which alias does what? (e.g., describe)         alias | grep describe
+Get all pods                                    kgp
+kubectl exec -ti POD                            keti [TAB][TAB]
+
 EOF
