@@ -1,6 +1,7 @@
 #!/bin/bash
 # How to set up Sean's working environment
-
+echo
+echo
 cat<<'EOF'
 Welcome to myenv: Sean's RHEL/CentOS/Fedora script to quickly set up vim, zsh, tmux, and fish
 EOF
@@ -107,7 +108,7 @@ To use the new icons (see vim-devicons), install a compatible nerd-font:
 3. Set your terminal program (e.g., Putty, MobaXTerm, etc.) to use the new font.
    Putty: Configuration > Window > Appearance > (tick) Allow selection of variable-pitch fonts > Change
           Configuration > Connection > Data > Terminal-type string > xterm-256color
-   MobaXTerm: Settings > Configuration > Font 
+   MobaXTerm: Settings > Configuration > Font
               (pick a session) > Right-click > Edit Session > Terminal Settings > Terminal font settings > Font
 
 General                                         URL
@@ -141,10 +142,13 @@ Prefix (avoids CTRL+B conflict in vim)          Ctrl+a
 Horizontally split the screen                   Ctrl+a "  (then drag the line)
 Vertically split the screen                     Ctrl+a %  (then drag the line)
 Navigate between screens                        Ctrl+a (Arrow Keys)
-Seemlessly navigate between tmux and vim        Ctrl+h Ctrl+j Ctrl+k Ctrl+l 
-Scroll up and down in command output		Ctrl+a Page Up (then Up and Down arrows)
+Seemlessly navigate between tmux and vim        Ctrl+h Ctrl+j Ctrl+k Ctrl+l
+Scroll up and down (option 1)		        Ctrl+a Page Up (then Up and Down arrows)
+Scroll up and down (option 2)		        Ctrl+a [ (scroll wheel)
+Scroll up and down (option 3)		        Alt+Up Arrow (scroll wheel)
 Save your environment to survive host reboot    Ctrl+a s
 Restore your environment after host reboot      Ctrl+a r
+Clear the screen                                Ctrl+a l
 
 zsh                                             Commands
 ----                                            --------
@@ -158,7 +162,7 @@ fish                                            Commands
 ----                                            --------
 Change your default shell to fish               chsh -s $(which fish)
 command completion                              ls -l[TAB][TAB][TAB]
-kubernetes command completion                   kubectl get [Tab][Tab] 
+kubernetes command completion                   kubectl get [Tab][Tab]
 
 Kubernetes                                      Commands
 ----                                            --------
