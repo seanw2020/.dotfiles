@@ -14,7 +14,6 @@ cd
 \mv -f ~/.tmux ~/.tmux.old.$RANDOM 2>/dev/null
 \mv -f ~/.tmux.conf ~/.tmux.conf.old.$RANDOM 2>/dev/null
 yes | sh ~/.oh-my-zsh/tools/uninstall.sh 2>/dev/null
-\mv -f ~/zsh-syntax-highlighting/ ~/.zsh-syntax-highlighting.old.$RANDOM 2>/dev/null
 rm -rf ~/fish-kubectl-completions &>/dev/null
 echo
 read -p "If you previously ran this script, it was just removed. Press Enter to (re)-install Sean's myenv."
