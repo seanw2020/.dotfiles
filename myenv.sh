@@ -54,8 +54,8 @@ zsh -c 'echo "source ${(q-)PWD}/.oh-my-zsh/custom/plugins/zsh-syntax-highlightin
 
 # fish
 sudo yum -y install fish
-mkdir -p ~/.config/fish/completions
 git clone https://github.com/evanlucas/fish-kubectl-completions ~/.config/fish
+mkdir -p ~/.config/fish/completions
 ln -s ~/.config/fish/fish-kubectl-completions/kubectl.fish ~/.config/fish/completions/ 2>/dev/null
 
 # tmux - general
