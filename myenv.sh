@@ -16,6 +16,7 @@ cd
 yes | sh ~/.oh-my-zsh/tools/uninstall.sh 2>/dev/null
 \rm -rf ~/fish-kubectl-completions &>/dev/null
 \rm -rf ~/.config/fish/fish-kubectl-completions &>/dev/null
+\rm -rf ~/.config/fish/completions/kubectl.fish &>/dev/null
 echo
 read -p "If you previously ran this script, it was just removed. Press Enter to (re)-install Sean's myenv."
 
