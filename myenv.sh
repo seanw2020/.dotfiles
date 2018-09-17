@@ -15,7 +15,6 @@ cd
 \mv -f ~/.tmux ~/.tmux.old.$RANDOM 2>/dev/null
 \mv -f ~/.tmux.conf ~/.tmux.conf.old.$RANDOM 2>/dev/null
 yes | sh ~/.oh-my-zsh/tools/uninstall.sh 2>/dev/null
-\rm -rf ~/fish-kubectl-completions &>/dev/null
 \rm -rf ~/.config/fish &>/dev/null
 echo
 read -p "If you previously ran this script, it was just removed. Press Enter to (re)-install Sean's myenv."
@@ -54,7 +53,7 @@ zsh -c 'echo "source ${(q-)PWD}/.oh-my-zsh/custom/plugins/zsh-syntax-highlightin
 
 # fish
 sudo yum -y install fish
-git clone https://github.com/evanlucas/fish-kubectl-completions ~/.config/fish
+git clone https://github.com/evanlucas/fish-kubectl-completions ~/.config/fish/fish-kubectl-completions
 mkdir -p ~/.config/fish/completions
 ln -s ~/.config/fish/fish-kubectl-completions/kubectl.fish ~/.config/fish/completions/ 2>/dev/null
 
@@ -89,7 +88,6 @@ fi
 git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmux/tmux-resurrect
 
 # What's next?
-echo
 echo
 cat <<'EOF'
 Welcome:
