@@ -14,7 +14,8 @@ cd
 \mv -f ~/.tmux ~/.tmux.old.$RANDOM 2>/dev/null
 \mv -f ~/.tmux.conf ~/.tmux.conf.old.$RANDOM 2>/dev/null
 yes | sh ~/.oh-my-zsh/tools/uninstall.sh 2>/dev/null
-rm -rf ~/fish-kubectl-completions &>/dev/null
+\rm -rf ~/fish-kubectl-completions &>/dev/null
+\rm -rf ~/.config/fish/fish-kubectl-completions
 echo
 read -p "If you previously ran this script, it was just removed. Press Enter to (re)-install Sean's myenv."
 
@@ -53,9 +54,8 @@ zsh -c 'echo "source ${(q-)PWD}/.oh-my-zsh/custom/plugins/zsh-syntax-highlightin
 # fish
 sudo yum -y install fish
 mkdir -p ~/.config/fish/completions
-cd ~/.config/fish
-git clone https://github.com/evanlucas/fish-kubectl-completions
-ln -s ../fish-kubectl-completions/kubectl.fish completions/ 2>/dev/null
+git clone https://github.com/evanlucas/fish-kubectl-completions ~/.config/fish
+ln -s ~/.config/fish/fish-kubectl-completions/kubectl.fish ~/.config/fish/completions/ 2>/dev/null
 
 # tmux - general
 # https://github.com/tmux-plugins/tpm/issues/6
