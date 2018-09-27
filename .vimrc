@@ -70,7 +70,8 @@
 " Set vim defaults
   syntax on
   set path+=** " For vim built-in :find, do it recursively
-  set wildmenu wildmode=longest,list
+  " set wildmenu wildmode=longest,list " acts like bash, not selectable
+  set wildmenu wildmode=full "acts like zsh, selectable
 
 " Solarized settings
     colorscheme solarized
@@ -174,7 +175,7 @@
   autocmd FileType cc set keywordprg=cppman
   autocmd FileType cpp set keywordprg=cppman
 
-" Activate the window on partial name match with eg :sb 1.yaml
+" Activate the window on partial name match with eg :sb vimrc (matches ~/.vimrc)
   set switchbuf+=useopen
 
 " Lightline tweaks
@@ -193,3 +194,17 @@
 
 " fzf search
   set rtp+=~/.fzf
+
+" Resize windows
+" http://vim.wikia.com/wiki/Fast_window_resizing_with_plus/minus_keys
+" Resize windows
+if bufwinnr(1)
+  nnoremap <Up> <C-W>2+
+  nnoremap <Down> <C-W>2-
+  nnoremap <Left> <C-W>2<
+  nnoremap <Right> <C-W>2>
+  nnoremap <C-m> <C-W>_ <C-W><Bar>
+  nnoremap <C-n> <C-W>1_ <C-W>1<Bar>
+  nnoremap <C-e> <C-W>2=
+endif
+

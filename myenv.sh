@@ -1,7 +1,6 @@
 #!/bin/bash
 # How to set up Sean's working environment
 echo
-echo
 cat<<'EOF'
 Welcome to myenv: Sean's RHEL/CentOS/Fedora script to quickly set up vim, zsh, tmux, and fish
 EOF
