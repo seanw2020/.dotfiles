@@ -43,6 +43,7 @@
   Plugin 'ryanoasis/vim-devicons' " Supports plugins such as NERDTree, vim-lightline, vim-airline, CtrlP, powerline ...
   Plugin 'majutsushi/tagbar' " Warning: this slows down airvim
   Plugin 'junegunn/fzf.vim'
+  Plugin 'nginx.vim' " Provides syntax highlighting for nginx conf files
 
 " Optional plugins
   " Plugin 'valloric/youcompleteme' " Use this instead of SuperTab, CtrlP, or vim-easytags
@@ -69,7 +70,7 @@
 
 " Set vim defaults
   syntax on
-  set path+=** " For vim built-in :find, do it recursively
+  set path+=**,~/** " For vim built-in :find, do it recursively
   " set wildmenu wildmode=longest,list " acts like bash, not selectable
   set wildmenu wildmode=full "acts like zsh, selectable
 
@@ -203,8 +204,9 @@ if bufwinnr(1)
   nnoremap <Down> <C-W>2-
   nnoremap <Left> <C-W>2<
   nnoremap <Right> <C-W>2>
-  nnoremap <C-m> <C-W>_ <C-W><Bar>
-  nnoremap <C-n> <C-W>1_ <C-W>1<Bar>
-  nnoremap <C-e> <C-W>2=
+  " As far as Vim is concerned, <C-M> and <CR> are the same thing:
+  " nnoremap <C-m> <C-W>_ <C-W><Bar>
+  nnoremap <C-x> <C-W>_ <C-W><Bar> " maximize
+  nnoremap <C-n> <C-W>1_ <C-W>1<Bar> " minimize
+  nnoremap <C-e> <C-W>2= " equalize
 endif
-
