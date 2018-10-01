@@ -206,7 +206,7 @@ if bufwinnr(1)
   nnoremap <Right> <C-W>2>
   " As far as Vim is concerned, <C-M> and <CR> are the same thing:
   " nnoremap <C-m> <C-W>_ <C-W><Bar>
-  nnoremap <C-x> <C-W>_ <C-W><Bar> " maximize
+  nnoremap <C-x> :NERDTreeClose<CR><C-W>_ <C-W><Bar>
   nnoremap <C-n> <C-W>1_ <C-W>1<Bar> " minimize
   nnoremap <C-e> <C-W>2= " equalize
 endif
