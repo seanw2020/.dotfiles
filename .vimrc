@@ -141,7 +141,7 @@
   " Detect filesystem changes ASAP
   " https://stackoverflow.com/questions/923737/detect-file-change-offer-to-reload-file
   " http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally
-  au CursorHold,FocusGained,BufEnter * checktime
+  au CursorHold,FocusGained,BufEnter * silent! checktime
 
 " Search tweaks
   set history=999
