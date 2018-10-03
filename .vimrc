@@ -132,7 +132,7 @@
 
 " Misc
   let mapleader = "," " Set the Leader
-  set listchars=eol:⏎,tab:▸↹,trail:·,extends:>,precedes:⏎ " Display tabs and spaces, when you say :set list
+  set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:· " Display tabs and spaces, when you say :set list
   set mouse=a " Enable mouse
   set ttymouse=xterm2 " allow mouse in tmux
   let g:go_version_warning = 0 " if you don't have Go installed, don't complain
@@ -165,6 +165,9 @@
   highlight DiffDelete cterm=bold ctermfg=251 ctermbg=255 gui=none guifg=bg guibg=Red
   highlight DiffChange cterm=bold ctermfg=none ctermbg=250 gui=none guifg=bg guibg=Red
   highlight DiffText   cterm=bold ctermfg=16 ctermbg=51 gui=none guifg=bg guibg=Red
+
+" set color for trailing whitespace plugin 'ntpeters/vim-better-whitespace'
+  highlight ExtraWhitespace ctermbg=51
 
 " keys for tabs
   nmap <F4> :tabp<cr>
