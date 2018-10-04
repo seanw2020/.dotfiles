@@ -192,9 +192,13 @@
         \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
         \ },
         \ 'component_function': {
-        \   'gitbranch': 'fugitive#head'
+        \   'gitbranch': 'fugitive#head',
+        \   'filename': 'LightLineFilename'
         \ },
         \ }
+    function! LightLineFilename()
+      return expand('%:p')
+    endfunction
 
 " fzf search
   set rtp+=~/.fzf
@@ -213,3 +217,14 @@ if bufwinnr(1)
   nnoremap <C-n> <C-W>1_ <C-W>1<Bar> " minimize
   nnoremap <C-e> <C-W>2= " equalize
 endif
+
+" Don't print Ack output while searching. Details: https://github.com/mileszs/ack.vim/issues/18
+function Search(string) abort
+  let saved_shellpipe = &shellpipe
+  let &shellpipe = '>'
+  try
+    execute 'Ack!' shellescape(a:string, 1)
+  finally
+    let &shellpipe = saved_shellpipe
+  endtry
+endfunction
