@@ -150,7 +150,7 @@
   set incsearch " show a preview of the first match based on what has been entered so far into the search field. Each time we enter another character, Vim instantly updates the preview.
   set hlsearch " set relativenumber
 
-" In visual mode, make * and # find the selected, not text under cursor. See page 232 of Pratical vim
+" In visual mode (not normal mode), make * and # find the selected, not text under cursor. See page 232 of Pratical vim
   xnoremap * :<C-u>call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
   xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
   function! s:VSetSearch(cmdtype)
@@ -189,7 +189,13 @@
         \ 'colorscheme': 'solarized',
         \ 'active': {
         \   'left': [ [ 'mode', 'paste' ],
-        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+        \   'right': [ [ 'lineinfo' ],
+        \              [ 'percent' ],
+        \              [ 'fileformat', 'fileencoding', 'filetype', 'buffernum' ] ]
+        \ },
+        \ 'component': {
+        \   'buffernum': 'buf %n'
         \ },
         \ 'component_function': {
         \   'gitbranch': 'fugitive#head',
@@ -214,7 +220,7 @@ if bufwinnr(1)
   " As far as Vim is concerned, <C-M> and <CR> are the same thing:
   " nnoremap <C-m> <C-W>_ <C-W><Bar>
   nnoremap <C-x> :NERDTreeClose<CR><C-W>_ <C-W><Bar>
-  nnoremap <C-n> <C-W>1_ <C-W>1<Bar> " minimize
+  nnoremap <C-n> :hide<CR> " minimize
   nnoremap <C-e> <C-W>2= " equalize
 endif
 
