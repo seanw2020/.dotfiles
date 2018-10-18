@@ -100,7 +100,7 @@ bindkey '\e[1~'   beginning-of-line  # Linux console
 bindkey '\e[4~'   end-of-line        # Linux console
 
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time )
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time )
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time )
 
 # Autosuggest highlight color
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=14'
