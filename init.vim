@@ -1,96 +1,80 @@
-" color koehler
-runtime macros/matchit.vim
+" Sean Wingert's .vimrc file
+" w|so %|PluginInstall
 
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
+" First things first
+  set encoding=utf-8
 
-" Required:
-set runtimepath+=/Users/swingerus.ibm.com/.cache/dein/repos/github.com/Shougo/dein.vim
+" Enable vundle
+  set nocompatible              " be iMproved, required
+  filetype off                  " required
 
-" Required:
-if dein#load_state('/Users/swingerus.ibm.com/.cache/dein')
-  call dein#begin('/Users/swingerus.ibm.com/.cache/dein')
+" Enable default plugins - cf book: 152 Practical Vim
+  filetype plugin on
+  runtime macros/matchit.vim
 
-  " Let dein manage dein
-  " Required:
-  call dein#add('/Users/swingerus.ibm.com/.cache/dein/repos/github.com/Shougo/dein.vim')
+" Set the runtime path (rtp) to include Vundle and initialize
+  set rtp+=~/.vim/bundle/Vundle.vim
+  call vundle#begin()" let Vundle manage Vundle, required
 
-  " Add or remove your plugins here like this:
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
+" Plugins
+  Plugin 'VundleVim/Vundle.vim'
+  Plugin 'airblade/vim-gitgutter'
+  Plugin 'tpope/vim-commentary'
+  Plugin 'tpope/vim-endwise'
+  Plugin 'tpope/vim-fugitive'
+  Plugin 'raimondi/delimitmate'
+  Plugin 'scrooloose/nerdtree'
+  Plugin 'scrooloose/syntastic'
+  Plugin 'altercation/vim-colors-solarized'
+  Plugin 'tpope/vim-surround'
+  Plugin 'dzeban/vim-log-syntax'
+  Plugin 'vim-utils/vim-man' " View man pages in vim. Grep for the man pages. E.g., :Man printf
+  Plugin 'fatih/vim-go'
+  Plugin 'mileszs/ack.vim'
+  Plugin 'lbrayner/vim-rzip'  " Extends stock zip.vim to allow recursively browsing and writing zip files (EAR,WAR,JAR,etc.)
+  Plugin 'will133/vim-dirdiff'
+  Plugin 'elzr/vim-json' " json highlighting
+  Plugin 'stephpy/vim-yaml' " Much faster yaml highlighting than vim 7.4, as of Sept 2018. Good for helm's _helpers.tpl
+  Plugin 'mustache/vim-mustache-handlebars' " Go template syntax and coloration
+  Plugin 'ntpeters/vim-better-whitespace' " Find whitespace in unexpected places
+  Plugin 'christoomey/vim-tmux-navigator' " When combined with a set of tmux key bindings, the plugin will allow you to navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
+  Plugin 'itchyny/lightline.vim' " A statusline plugin that doesn't require powerline or vim-airline
+  Plugin 'ryanoasis/vim-devicons' " Supports plugins such as NERDTree, vim-lightline, vim-airline, CtrlP, powerline ...
+  Plugin 'majutsushi/tagbar' " Warning: this slows down airvim
+  Plugin 'junegunn/fzf.vim'  " Fuzzy finder
+  Plugin 'nginx.vim' " Provides syntax highlighting for nginx conf files
+  " Plugin 'ervandew/supertab'
+  Plugin 'SirVer/ultisnips'    " Holger Rapp's snippets engine
+  Plugin 'honza/vim-snippets'  " 'UltiSnips comes without snippets. An excellent selection of snippets can be found here.'
+  Plugin 'jlanzarotta/bufexplorer' " Navigate buffers with :BufExplorer: 'be', 'bt', 'bs', 'bv' 'be'
 
-  call dein#add('justmao945/vim-clang', {'on_ft': ['c', 'cpp']})        " lazy load on filetype
-  call dein#add('scrooloose/nerdtree', {'on_cmd': 'NERDTreeToggle'})    " lazy load on command executed
-  call dein#add('Shougo/deoplete.nvim', {'on_i': 1})                    " lazy load on insert mode
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-  endif
+  Plugin 'godlygeek/tabular'
+  Plugin 'plasticboy/vim-markdown'
+  " Plugin 'gabrielelana/vim-markdown'
 
-  " lazy load on function call
-  call dein#add('othree/eregex.vim', {'on_func': 'eregex#toggle'})
+" Optional plugins
+  Plugin 'valloric/youcompleteme' " Use this instead of SuperTab, CtrlP, or vim-easytags
+  " Plugin 'tpope/vim-obsession'  " Create sessions inside vim. I use tmux with resurrection instead
+  " Plugin 'Conque-Shell' " Conque is a Vim plugin allowing users to execute and interact with programs, typically a shell such as bash, inside a buffer window. The goal is always to keep the terminal behavior as close as possible to its native interface, while adding the additional features of Vim on top.
 
-  call dein#add('carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' })
-  call dein#add('deoplete-plugins/deoplete-jedi')
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('fatih/vim-go')
+" I decided against all of these
+  " Plugin 'powerline/powerline' " To disable, do that here and below.
+  " Plugin 'vim-airline/vim-airline' " With airline and powerline enabled, powerline wins if its rtp is enabled, but :AirlineToggle twice helps
+  " Plugin 'vim-airline/vim-airline-themes'
+  " Plugin 'kien/ctrlp.vim'
+  " Plugin 'Shougo/neocomplcache'
+  " Plugin 'shougo/neosnippet.vim'
+  " Plugin 'Shougo/neosnippet-snippets'
+  " Plugin 'shougo/deoplete.nvim'
+  " Plugin 'xolox/vim-easytags'
+  " Plugin 'xolox/vim-misc'
+  " Plugin 'thaerkh/vim-workspace'
+  " Plugin 'jaxbot/github-issues.vim'
+  " Plugin 'ervandew/supertab'
 
-  " solarized
-  call dein#add('altercation/vim-colors-solarized')
-  call dein#add('altercation/vim-colors-solarized', {'merged': 0})
-  call dein#source('vim-colors-solarized')
-  colorscheme solarized
-
-  call dein#add('airblade/vim-gitgutter')
-  call dein#add('tpope/vim-commentary')
-  call dein#add('tpope/vim-endwise')
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('raimondi/delimitmate')
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('scrooloose/syntastic')
-  call dein#add('altercation/vim-colors-solarized')
-  call dein#add('tpope/vim-surround')
-  call dein#add('dzeban/vim-log-syntax')
-  call dein#add('jez/vim-superman') " View man pages in vim. Grep for the man pages. E.g., :Man printf
-  " call dein#add('mileszs/ack.vim')
-  call dein#add('lbrayner/vim-rzip')  " Extends stock zip.vim to allow recursively browsing and writing zip files (EAR,WAR,JAR,etc.)
-  call dein#add('will133/vim-dirdiff')
-  call dein#add('elzr/vim-json') " json highlighting
-  call dein#add('stephpy/vim-yaml') " Much faster yaml highlighting than vim 7.4, as of Sept 2018. Good for helm's _helpers.tpl
-  call dein#add('mustache/vim-mustache-handlebars') " Go template syntax and coloration
-  call dein#add('ntpeters/vim-better-whitespace') " Find whitespace in unexpected places
-  call dein#add('christoomey/vim-tmux-navigator') " When combined with a set of tmux key bindings, the plugin will allow you to navigate seamlessly between vim and tmux splits using a consistent set of hotkeys.
-  " call dein#add('itchyny/lightline.vim') " A statusline plugin that doesn't require powerline or vim-airline
-  call dein#add('ryanoasis/vim-devicons') " Supports plugins such as NERDTree, vim-lightline, vim-airline, CtrlP, powerline ...
-  call dein#add('majutsushi/tagbar') " Warning: this slows down airvim
-  call dein#add('junegunn/fzf.vim')  " Fuzzy finder
-  " call dein#add('nginx.vim') " provides syntax highlighting for nginx conf files
-  call dein#add('ervandew/supertab')
-  call dein#add('SirVer/ultisnips')    " Holger Rapp's snippets engine
-  call dein#add('honza/vim-snippets')  " 'UltiSnips comes without snippets. An excellent selection of snippets can be found here.'
-
-  call dein#add('godlygeek/tabular')
-  " call dein#add('plasticboy/vim-markdown')
-  call dein#add('wincent/command-t')
-
-  " Required:
-  call dein#end()
-  call dein#save_state()
-endif
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
-"End dein Scripts-------------------------
+" All of your Vundle Plugins must be added BEFORE the following line
+  call vundle#end()            " required
+  filetype plugin indent on    " required
 
 " Set vim defaults
   syntax on
@@ -100,7 +84,7 @@ endif
   set wildmenu wildmode=full "acts like zsh, selectable
 
 " Solarized settings
-  colorscheme solarized
+    colorscheme solarized
   " Use these for Putty without solarized palette
     let g:solarized_termcolors= 256
     let g:solarized_termtrans = 0
@@ -130,7 +114,7 @@ endif
     let s:base3       = "223"
     colorscheme solarized " The following must come AFTER the let statements or the colors fail to load properly!
   " set background=dark " If you don't have a light background (default), uncomment this line
-  " hi Normal guibg=NONE ctermbg=NONE " disable the transparent(?) background to avoid odd background highlights
+  hi Normal guibg=NONE ctermbg=NONE " disable the transparent(?) background to avoid odd background highlights
 
 " Performance tweaks
   set timeoutlen=1000 ttimeoutlen=0 " Eliminating delays on ESC in vim and zsh. Timeoutlen is used for mapping delays, and ttimeoutlen is used for key code delays.
@@ -141,19 +125,19 @@ endif
   " nnoremap <C-j> <C-w>j
   " nnoremap <C-k> <C-w>k
   " nnoremap <C-l> <C-w>l
-
+  "
   " In tmux on CentOS 7.4 (others too?), vim's Ctrl+H fails. The map below fixes it. Details https://github.com/ranger/ranger/issues/559
   nnoremap <bs> <C-w>h
 
 " NERDTree
-silent! nmap <F1> :NERDTreeToggle<CR>
-silent! nmap <F2> :NERDTreeFind<CR>
-silent! nmap <F3> :TagbarToggle<CR>
-let g:NERDTreeDirArrowExpandable = '→'
-let g:NERDTreeDirArrowCollapsible = '↓'
-" Optional, in case your terminal's font can't handle arrows
-" let NERDTreeDirArrowExpandable = "+"
-" let NERDTreeDirArrowCollapsible = "-"
+  silent! nmap <F1> :NERDTreeToggle<CR>
+  silent! nmap <F2> :NERDTreeFind<CR>
+  silent! nmap <F3> :TagbarToggle<CR>
+  let g:NERDTreeDirArrowExpandable = '→'
+  let g:NERDTreeDirArrowCollapsible = '↓'
+  " Optional, in case your terminal's font can't handle arrows
+  " let NERDTreeDirArrowExpandable = "+"
+  " let NERDTreeDirArrowCollapsible = "-"
 
 " Misc
   " let mapleader = "," " Set the Leader. Don't remove ; or , as suggested in Practical Vim, pg 122
@@ -167,12 +151,7 @@ let g:NERDTreeDirArrowCollapsible = '↓'
   " Detect filesystem changes ASAP
   " https://stackoverflow.com/questions/923737/detect-file-change-offer-to-reload-file
   " http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally
-  " au CursorHold,FocusGained,BufEnter * silent! checktime
-  " neovim specific: https://github.com/neovim/neovim/issues/3326  (they
-  " suggest autoread, but that automatically reads in new updates, whereas I
-  " want a prompt)
-  set noautoread
-  au FocusGained * :checktime
+  au CursorHold,FocusGained,BufEnter * silent! checktime
 
 " Search tweaks
   set history=999
@@ -207,7 +186,7 @@ let g:NERDTreeDirArrowCollapsible = '↓'
   " nmap <F6> :set norelativenumber nonumber <bar> GitGutterDisable <cr>
   " nmap <F7> :set number <bar> GitGutterEnable <cr>
 
-" In .cc or .cpp files, use cppman for keyword program -- Shift+K
+" Use cppman for keyword program -- Shift+K
   autocmd FileType cc set keywordprg=cppman
   autocmd FileType cpp set keywordprg=cppman
 
@@ -217,33 +196,33 @@ let g:NERDTreeDirArrowCollapsible = '↓'
 " Mac: clipboard integration
 set clipboard=unnamed
 
-" " Lightline tweaks
-"   set laststatus=2 " Always display the statusline in all windows
-"   " Enable fugitive branches in lightline
-"   let g:lightline = {
-"         \ 'colorscheme': 'solarized',
-"         \ 'active': {
-"         \   'left': [ [ 'mode', 'paste' ],
-"         \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-"         \   'right': [ [ 'lineinfo' ],
-"         \              [ 'percent' ],
-"         \              [ 'fileformat', 'fileencoding', 'filetype', 'buffernum' ] ]
-"         \ },
-"         \ 'component': {
-"         \   'buffernum': 'buf %n'
-"         \ },
-"         \ 'component_function': {
-"         \   'gitbranch': 'fugitive#head',
-"         \   'filename': 'LightLineFilename'
-"         \ },
-"         \ }
-"     function! LightLineFilename()
-"       return expand('%:p')
-"     endfunction
+" Lightline tweaks
+  set laststatus=2 " Always display the statusline in all windows
+  " Enable fugitive branches in lightline
+  let g:lightline = {
+        \ 'colorscheme': 'solarized',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+        \   'right': [ [ 'lineinfo' ],
+        \              [ 'percent' ],
+        \              [ 'fileformat', 'fileencoding', 'filetype', 'buffernum' ] ]
+        \ },
+        \ 'component': {
+        \   'buffernum': 'buf %n'
+        \ },
+        \ 'component_function': {
+        \   'gitbranch': 'fugitive#head',
+        \   'filename': 'LightLineFilename'
+        \ },
+        \ }
+    function! LightLineFilename()
+      return expand('%:p')
+    endfunction
 
 " fzf search
   " set rtp+=~/.fzf   " If installed with git
-  set rtp+=/usr/local/opt/fzf  " If installed with homebrew
+  set rtp+=/usr/local/opt/fzf  " If install with homebrew
 
 " Resize windows
 " http://vim.wikia.com/wiki/Fast_window_resizing_with_plus/minus_keys
@@ -260,15 +239,15 @@ if bufwinnr(1)
 endif
 
 " Don't print Ack output while searching. Details: https://github.com/mileszs/ack.vim/issues/18
-" function Search(string) abort
-"   let saved_shellpipe = &shellpipe
-"   let &shellpipe = '>'
-"   try
-"     execute 'Ack!' shellescape(a:string, 1)
-"   finally
-"     let &shellpipe = saved_shellpipe
-"   endtry
-" endfunction
+function Search(string) abort
+  let saved_shellpipe = &shellpipe
+  let &shellpipe = '>'
+  try
+    execute 'Ack!' shellescape(a:string, 1)
+  finally
+    let &shellpipe = saved_shellpipe
+  endtry
+endfunction
 
  " Ultisnips
  " do this first to allow Dropbox, or similar, backups of ~/Documents/myultisnips:
@@ -320,8 +299,6 @@ autocmd BufEnter * if &filetype == "" | setlocal ft=log | endif
 
 " enable syntax highlighting on .log filetype
 autocmd BufNewFile,BufReadPost *log* :set filetype=log
-
-let g:airline_theme="molokai"
 
 " in nvim, these had to be last. I'm not sure why
 set background=light " If you don't have a light background (default), uncomment this line
