@@ -29,7 +29,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'scrooloose/syntastic'
   Plug 'altercation/vim-colors-solarized'
   Plug 'dzeban/vim-log-syntax'
-  Plug 'vim-utils/vim-man' " View man pages in vim. Grep for the man pages. E.g., :Man printf
+  " Plug 'vim-utils/vim-man' " neovim has a built–in man. View man pages in vim. Grep for the man pages. E.g., :Man printf
   Plug 'lbrayner/vim-rzip'  " Extends stock zip.vim to allow recursively browsing and writing zip files (EAR,WAR,JAR,etc.)
   Plug 'will133/vim-dirdiff'
   Plug 'elzr/vim-json' " json highlighting
@@ -51,6 +51,11 @@ call plug#begin('~/.vim/plugged')
   " Go stuff
   Plug 'fatih/vim-go'
   Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+  Plug 'rhysd/rust-doc.vim' " integrate rust documentation (cargo doc too) in vim
+  Plug 'rust-lang/rust.vim' " Vim plugin that provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
+  Plug 'plasticboy/vim-markdown' " Good but slow. Still maintained in 2019.
+  Plug 'suan/vim-instant-markdown', {'for': 'markdown'} " When you open a markdown file in vim, a browser window will open which shows the compiled markdown in real-time, and closes once you close the file in vim.
+
   " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
   " Plug 'lifepillar/vim-mucomplete'
 
@@ -71,7 +76,6 @@ call plug#begin('~/.vim/plugged')
   " Plug 'thaerkh/vim-workspace'
   " Plug 'jaxbot/github-issues.vim'
   " Plug 'ervandew/supertab'
-  " Plug 'plasticboy/vim-markdown'
   " Plug 'gabrielelana/vim-markdown'
   " Plug 'nginx.vim' " Provides syntax highlighting for nginx conf files
   " Plug 'mileszs/ack.vim'
@@ -159,7 +163,8 @@ call plug#end() " Set vim defaults
   " Detect filesystem changes ASAP
   " https://stackoverflow.com/questions/923737/detect-file-change-offer-to-reload-file
   " http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally
-  au CursorHold,FocusGained,BufEnter * silent! checktime
+  au CursorHold,FocusGained,BufEnter * silent! checktime " This detects changes quickly
+  set noautoread " This (basically) enables the prompt
 
 " Search tweaks
   set history=999
@@ -178,13 +183,6 @@ call plug#end() " Set vim defaults
   "   let @s = temp
   " endfunction
 
-" install sensible colors for diffs
-  highlight DiffAdd    cterm=bold ctermfg=none ctermbg=250 gui=none guifg=bg guibg=Red
-  highlight DiffDelete cterm=bold ctermfg=251 ctermbg=255 gui=none guifg=bg guibg=Red
-  highlight DiffChange cterm=bold ctermfg=none ctermbg=250 gui=none guifg=bg guibg=Red
-  highlight DiffText   cterm=bold ctermfg=16 ctermbg=51 gui=none guifg=bg guibg=Red
-  highlight DebugBreak cterm=bold ctermfg=none ctermbg=250 gui=none guifg=bg guibg=Red
-
 " set color for trailing whitespace plugin 'ntpeters/vim-better-whitespace'
   highlight ExtraWhitespace ctermbg=51
 
@@ -199,7 +197,7 @@ call plug#end() " Set vim defaults
   autocmd FileType cpp set keywordprg=cppman
 
 " Activate the window on partial name match with eg :sb vimrc (matches ~/.vimrc)
-  " set switchbuf+=useopen
+  set switchbuf+=useopen
 
 " Mac: clipboard integration
 set clipboard=unnamed
@@ -228,10 +226,6 @@ set clipboard=unnamed
     function! LightLineFilename()
       return expand('%:p')
     endfunction
-
-" fzf search
-  " set rtp+=~/.fzf   " If installed with git
-  set rtp+=/usr/local/opt/fzf  " If install with homebrew
 
 " Resize windows
 " http://vim.wikia.com/wiki/Fast_window_resizing_with_plus/minus_keys
@@ -271,17 +265,17 @@ endif
 
  " Configure netrw like NerdTREE: https://shapeshed.com/vim-netrw/
  " let g:netrw_banner = 0
- let g:netrw_liststyle = 3
- let g:netrw_browse_split = 4
- let g:netrw_altv = 1
- let g:netrw_winsize = 25
- augroup netrw_mapping  " Override net-rw's control+l so it does what you expect -- https://vi.stackexchange.com/questions/5531/how-to-remap-i-in-netrw
-   autocmd!
-   autocmd filetype netrw call NetrwMapping()
- augroup END
- function! NetrwMapping()
-   noremap <buffer> <c-l> <C-W>l
- endfunction
+ " let g:netrw_liststyle = 3
+ " let g:netrw_browse_split = 4
+ " let g:netrw_altv = 1
+ " let g:netrw_winsize = 25
+ " augroup netrw_mapping  " Override net-rw's control+l so it does what you expect -- https://vi.stackexchange.com/questions/5531/how-to-remap-i-in-netrw
+ "   autocmd!
+ "   autocmd filetype netrw call NetrwMapping()
+ " augroup END
+ " function! NetrwMapping()
+ "   noremap <buffer> <c-l> <C-W>l
+ " endfunction
 
 " make tab key input 2 spaces instead of tab character
 set ts=2 sw=2 et sta ai
@@ -301,7 +295,9 @@ hi Normal guibg=NONE ctermbg=NONE " disable the transparent(?) background to avo
   nnoremap <C-p> :FZF ~/<Cr>
   " map ctrl+e to ag (silver surfer) with Preview
   nnoremap <C-e> :Ag!<Cr>
-  set rtp+=/usr/local/opt/fzf
+  " set rtp+=~/.fzf   " If installed with git
+  set rtp+=/usr/local/opt/fzf  " If install with homebrew
+
 
   let g:fzf_tags_command = 'ctags --extra=+f -R'
   " let g:fzf_colors =
@@ -509,3 +505,25 @@ let g:go_metalinter_autosave = 1
 let g:go_metalinter_deadline = "5s"
 
 let g:AutoClosePreserveDotReg = 0
+
+" disable swap files OR customize their locations: https://vi.stackexchange.com/a/179/15006
+set noswapfile
+" set backupdir=.backup/,~/.backup/,/tmp//
+" set directory=.swp/,~/.swp/,/tmp//
+" set undodir=.undo/,~/.undo/,/tmp//
+
+" use :grep for ag
+set grepprg=ag\ --vimgrep\ $*
+set grepformat=%f:%l:%c:%m
+
+" Type Grep for fastest ag search: https://github.com/ggreer/the_silver_searcher/issues/1341
+abbr Grep copen \| silent! grep!
+
+" These need to come last, or near last, for some reason.
+" Install sensible colors for diffs
+  highlight DiffAdd    cterm=bold ctermfg=none ctermbg=250 gui=none guifg=bg guibg=Red
+  highlight DiffDelete cterm=bold ctermfg=251 ctermbg=255 gui=none guifg=bg guibg=Red
+  highlight DiffChange cterm=bold ctermfg=none ctermbg=250 gui=none guifg=bg guibg=Red
+  highlight DiffText   cterm=bold ctermfg=16 ctermbg=51 gui=none guifg=bg guibg=Red
+  highlight DebugBreak cterm=bold ctermfg=none ctermbg=250 gui=none guifg=bg guibg=Red
+
