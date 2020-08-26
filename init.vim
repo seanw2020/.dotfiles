@@ -589,3 +589,4 @@ set statusline+=%=
 set statusline+=\ %{LinterStatus()}
 
 set path+=~/git/dev-ops-tasks/**,~/git/sre-deploy/**,~/git/sre-ansible/**,~/git/sre-terraform,~/git/sre-architecture
+
