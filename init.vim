@@ -24,6 +24,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive' " Causes pumvisible to appear when using COC's pumvisible <cr>
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-unimpaired'
+  Plug 'tpope/vim-abolish'
+  Plug 'tpope/vim-dispatch'
   Plug 'raimondi/delimitmate'
   Plug 'scrooloose/nerdtree'
   Plug 'scrooloose/syntastic'
@@ -47,7 +49,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'honza/vim-snippets'  " 'UltiSnips comes without snippets. An excellent selection of snippets can be found here.'
   Plug 'jlanzarotta/bufexplorer' " Navigate buffers with :BufExplorer: 'be', 'bt', 'bs', 'bv' 'be'
   Plug 'AndrewRadev/splitjoin.vim'
-  " Plug 'w0rp/ale' " Check syntax (linting) and fix files asynchronously, with Language Server Protocol (LSP) integration in Vim
+  Plug 'dense-analysis/ale' " Check syntax (linting) and fix files asynchronously, with Language Server Protocol (LSP) integration in Vim
   " Go stuff
   Plug 'fatih/vim-go'
   Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
@@ -55,9 +57,17 @@ call plug#begin('~/.vim/plugged')
   Plug 'rust-lang/rust.vim' " Vim plugin that provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
   Plug 'plasticboy/vim-markdown' " Good but slow. Still maintained in 2019.
   Plug 'suan/vim-instant-markdown', {'for': 'markdown'} " When you open a markdown file in vim, a browser window will open which shows the compiled markdown in real-time, and closes once you close the file in vim.
-
-  " Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-  " Plug 'lifepillar/vim-mucomplete'
+  Plug 'z0mbix/vim-shfmt', { 'for': 'sh' } " The Vim shfmt plugin runs shfmt to auto format the current buffer
+  Plug 'itspriddle/vim-shellcheck' " Vim wrapper for ShellCheck, a static analysis tool for shell scripts.
+  Plug 'martinda/jenkinsfile-vim-syntax' " A plugin that enables Jenkins DSL job syntax coloring + indentation.
+  Plug 'ekalinin/dockerfile.vim' " Vim syntax file for Docker's Dockerfile and snippets for snipMate.
+  Plug 'hashivim/vim-terraform' " https://github.com/hashivim/vim-terraform
+  " Plug 'jvirtanen/vim-hcl'  " PROBABLY DELETE ME SINCE vim-terraform MAY DO THE SAME, ALTHOUGH THIS RECOGNIZES HCL FILES (setf hcl), WHEREAS vim-terraform DOES NOT. the sameSyntax highlighting for HashiCorp Configuration Language (HCL) used by Consul, Nomad, Terraform, and Vault.
+  "Plug 'vim-python/python-syntax' " may be optional, given python-mode below
+  Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+  Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } " python linter. 265 contributors. thousands of commits
+  Plug 'gu-fan/riv.vim' " rst-aware editing
+  "Plug 'ms-jpq/chadtree', { 'branch': 'dev' }
 
 " Optional plugins
   " Plug 'valloric/youcompleteme' " Use this instead of SuperTab, CtrlP, or vim-easytags
@@ -81,6 +91,7 @@ call plug#begin('~/.vim/plugged')
   " Plug 'mileszs/ack.vim'
   " Plug 'tpope/vim-obsession'  " Create sessions inside vim. I use tmux with resurrection instead
   " Plug 'Conque-Shell' " Conque is a Vim plugin allowing users to execute and interact with programs, typically a shell such as bash, inside a buffer window. The goal is always to keep the terminal behavior as close as possible to its native interface, while adding the additional features of Vim on top.
+  " Plug 'lifepillar/vim-mucomplete'
 
 " All of your Vundle Plugs must be added BEFORE the following line
   " call vundle#end()            " required
@@ -145,8 +156,10 @@ call plug#end() " Set vim defaults
   silent! nmap <F1> :NERDTreeToggle<CR>
   silent! nmap <F2> :NERDTreeFind<CR>
   silent! nmap <F3> :TagbarToggle<CR>
-  let g:NERDTreeDirArrowExpandable = '→'
-  let g:NERDTreeDirArrowCollapsible = '↓'
+  let g:NERDTreeDirArrowExpandable = ' '
+  let g:NERDTreeDirArrowCollapsible = ' '
+  " let g:NERDTreeDirArrowExpandable = '→'
+  " let g:NERDTreeDirArrowCollapsible = '↓'
   " Optional, in case your terminal's font can't handle arrows
   " let NERDTreeDirArrowExpandable = "+"
   " let NERDTreeDirArrowCollapsible = "-"
@@ -165,6 +178,7 @@ call plug#end() " Set vim defaults
   " http://vim.wikia.com/wiki/Have_Vim_check_automatically_if_the_file_has_changed_externally
   au CursorHold,FocusGained,BufEnter * silent! checktime " This detects changes quickly
   set noautoread " This (basically) enables the prompt
+  let g:tagbar_sort = 0 " tagbar: don't automatically sort
 
 " Search tweaks
   set history=999
@@ -277,8 +291,6 @@ endif
  "   noremap <buffer> <c-l> <C-W>l
  " endfunction
 
-" make tab key input 2 spaces instead of tab character
-set ts=2 sw=2 et sta ai
 
 " if no filetype is set, make it log and enable syntax highlighting
 " https://stackoverflow.com/a/5492283/1231693
@@ -292,9 +304,12 @@ hi Normal guibg=NONE ctermbg=NONE " disable the transparent(?) background to avo
 " FZF config
 " ******************************************
   " map ctrl+p to fzf
-  nnoremap <C-p> :FZF ~/<Cr>
+  nnoremap <C-p> :FZF ~/git/<Cr>
   " map ctrl+e to ag (silver surfer) with Preview
-  nnoremap <C-e> :Ag!<Cr>
+
+  command! -nargs=+ Grep new|q| execute 'silent! grep! -ri <args> '. join(split(&path, ","), " ") | bot copen 5 | redraw! | /<args>
+
+  nnoremap <C-e> :lcd ~/git/ <bar> :Ag!<Cr>
   " set rtp+=~/.fzf   " If installed with git
   set rtp+=/usr/local/opt/fzf  " If install with homebrew
 
@@ -393,8 +408,8 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " inoremap <expr><CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[c` and `]c` to navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
+" nmap <silent> [c <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -516,8 +531,34 @@ set noswapfile
 set grepprg=ag\ --vimgrep\ $*
 set grepformat=%f:%l:%c:%m
 
+" start Abbreviations
 " Type Grep for fastest ag search: https://github.com/ggreer/the_silver_searcher/issues/1341
-abbr Grep copen \| silent! grep!
+"abbr Grep copen \| silent! grep!
+abbr kgp kubectl get pods
+abbr kga kubectl get all -o wide
+abbr kgs kubectl get svc
+" end Abbreviations
+
+" auto-fit by default
+let g:vim_markdown_toc_autofit = 1
+
+" In shfmt, use spaces instead of the default tabs
+let g:shfmt_extra_args = '-i 2'
+
+" Read the current git branch name: https://stackoverflow.com/a/12142066/1231693
+nnoremap <Leader>br :r !git rev-parse --abbrev-ref HEAD \| tr '-' ' '<cr>ggdd0daW$
+
+" Allow :Gbranch to do :Git checkout <branch> in fugitive
+" https://vi.stackexchange.com/a/15991/15006
+function! s:changebranch(branch) 
+    execute 'Git checkout' . a:branch
+    call feedkeys("i")
+endfunction
+
+command! -bang Gbranch call fzf#run({
+            \ 'source': 'git branch -a --no-color | grep -v "^\* " ', 
+            \ 'sink': function('s:changebranch')
+            \ })
 
 " These need to come last, or near last, for some reason.
 " Install sensible colors for diffs
@@ -527,3 +568,24 @@ abbr Grep copen \| silent! grep!
   highlight DiffText   cterm=bold ctermfg=16 ctermbg=51 gui=none guifg=bg guibg=Red
   highlight DebugBreak cterm=bold ctermfg=none ctermbg=250 gui=none guifg=bg guibg=Red
 
+" Don't use tab for these files. Alternatively, put this in ~/vim/ftplugin/yaml.vim
+autocmd FileType yaml        setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType Jenkinsfile setlocal ts=2 sts=2 sw=2 expandtab
+" make tab key input 2 spaces instead of tab character
+set ts=2 sw=2 et sta ai
+
+" https://github.com/dense-analysis/ale
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? 'OK' : printf(
+        \   '%d⨉ %d⚠ ',
+        \   all_non_errors,
+        \   all_errors
+        \)
+endfunction
+set statusline+=%=
+set statusline+=\ %{LinterStatus()}
+
+set path+=~/git/dev-ops-tasks/**,~/git/sre-deploy/**,~/git/sre-ansible/**,~/git/sre-terraform,~/git/sre-architecture
